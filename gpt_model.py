@@ -18,6 +18,7 @@ def choose_from_top(probs, n=5):
     token_id = ind[choice][0]
     return int(token_id)
 
+
 def generate_joke(input_str, text_len = 250):
 
     with torch.no_grad():      
@@ -44,3 +45,11 @@ def generate_joke(input_str, text_len = 250):
             output_list = list(cur_ids.squeeze().to('cpu').numpy())
             output_text = tokenizer.decode(output_list)
             return output_text[:-13]
+        
+        
+def get_joke(text):
+    if text == 'Joke':
+        res = (generate_joke('Joke:')[5:]).capitalize()
+    else:
+        res = generate_joke(text)
+    return res

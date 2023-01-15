@@ -1,14 +1,8 @@
 import telebot
-from gpt_model import generate_joke
+from gpt_model import get_joke
 
 bot = telebot.TeleBot('bot-token')
 
-def get_joke(text):
-    if text == 'Joke':
-        res = (generate_joke('Joke:')[5:]).capitalize()
-    else:
-        res = generate_joke(text)
-    return res
 
 @bot.message_handler(commands=['start'])
 def start(message):
